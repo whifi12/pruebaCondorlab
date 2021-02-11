@@ -52,7 +52,7 @@ class DetailViewModelTest : BaseTest() {
     @Test
     fun testLoadUsersIsSuccessfulL(){
         events.events = event
-        team.idTeam = "id"
+        team.idTeam = id
         `when`(leaguesRepository.getEvents(id)).thenReturn(Observable.just(events))
         detailViewModel.getLastEvents(id)
         assertTrue(detailViewModel.progress().value!!)
