@@ -6,10 +6,14 @@ import com.pruebacondorlabs.models.Teams
 class ItemTeamViewModel() {
 
     var name = MutableLiveData<String>()
+    var stadium = MutableLiveData<String>()
+    var imageUrl = MutableLiveData<String>()
 
 
-    private fun teams(teams: Teams){
-
+     fun teams(teams: Teams){
+        name.value = teams.name
+        stadium.value = teams.stadium
+        imageUrl.value = teams.badge
     }
 
 }

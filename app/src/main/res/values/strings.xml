@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">pruebaCondorlabs</string>
     <string name="welcome">Futbol Total!</string>
-    <string name="main">Ligas</string>
+    <string name="titleName">Team</string>
+    <string name="titleStadium">Stadium</string>
+    <string name="titleJersey">Jersey</string>
+    <string name="titleDescription">Description</string>
+    <string name="titleYear">Foundation year</string>
+    <string name="titleContact">Contacts</string>
+    <string name="main">Leagues</string>
+    <string name="wait">One moment, please</string>
 </resources>

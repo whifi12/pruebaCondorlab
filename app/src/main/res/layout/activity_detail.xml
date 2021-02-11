@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.pruebacondorlabs.viewModel.DetailViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".view.DetailActivity">
+
+
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:imageUrl="@{viewModel.badge}"
+                    app:error="@{@drawable/ic_error}"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:id="@+id/titleName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/titleName"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:mutableText="@{viewModel.name}"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/titleDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/titleDescription"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:mutableText="@{viewModel.description}"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/titleYear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/titleYear"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/year"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    app:mutableText="@{viewModel.year}"/>
+
+                <TextView
+                    android:id="@+id/titleContact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/titleContact"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/web"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#3F51B5"
+                    app:mutableText="@{viewModel.web}"
+                    app:mutableTextViewVisibility="@{viewModel.visibilityWeb}"
+                    android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/facebook"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#3F51B5"
+                    app:mutableText="@{viewModel.facebook}"
+                    app:mutableTextViewVisibility="@{viewModel.visibilityFacebook}"
+                    android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/twitter"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#3F51B5"
+                    app:mutableText="@{viewModel.twitter}"
+                    app:mutableTextViewVisibility="@{viewModel.visibilityTwitter}"
+                    android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/instagram"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#3F51B5"
+                    app:mutableText="@{viewModel.instagram}"
+                    app:mutableTextViewVisibility="@{viewModel.visibilityInstagram}"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/titleYersey"
+                    android:layout_width="wrap_content"
+                    android:visibility="invisible"
+                    android:layout_height="wrap_content"
+                    android:text="@string/titleJersey"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:textSize="20sp"
+                    />
+
+                <ImageView
+                    android:id="@+id/jersey"
+                    android:visibility="invisible"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:mutableVisibilityImage="@{viewModel.visibilityJersey}"
+                    app:imageUrl="@{viewModel.jersey}"
+                    app:error="@{@drawable/ic_error}"/>
+
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewMatchs"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintTop_toBottomOf="@id/info"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

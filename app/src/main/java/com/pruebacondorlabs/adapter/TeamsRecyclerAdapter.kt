@@ -1,6 +1,5 @@
 package com.pruebacondorlabs.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -10,13 +9,10 @@ import com.pruebacondorlabs.databinding.ItemTeamBinding
 import com.pruebacondorlabs.models.Teams
 import com.pruebacondorlabs.viewModel.ItemTeamViewModel
 
-class TeamsRecyclerAdapter(private val context: Context, private var teams: List<Teams>) : RecyclerView.Adapter<TeamsRecyclerAdapter.CustomViewHolder>() {
+class TeamsRecyclerAdapter(private var teams: List<Teams>,private val onUsersListener: OnUsersListener) : RecyclerView.Adapter<TeamsRecyclerAdapter.CustomViewHolder>() {
 
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): TeamsRecyclerAdapter.CustomViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val itemBinding: ItemTeamBinding = DataBindingUtil.inflate(layoutInflater, viewType, parent, false)
         return CustomViewHolder(itemBinding)
@@ -31,11 +27,18 @@ class TeamsRecyclerAdapter(private val context: Context, private var teams: List
     }
 
 
-    override fun onBindViewHolder(holder: TeamsRecyclerAdapter.CustomViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         val itemViewModel = ItemTeamViewModel()
         val item: ItemTeamBinding = holder.binding
+        itemViewModel.teams(teams[position])
+        item.viewModel = itemViewModel
+        item.item.setOnClickListener {
+            onUsersListener.onItemClick(teams[position])
+        }
+    }
 
-
+    interface OnUsersListener {
+        fun onItemClick(teams: Teams)
     }
 
     fun setItems(teams :List<Teams>){
@@ -45,7 +48,7 @@ class TeamsRecyclerAdapter(private val context: Context, private var teams: List
 
     class CustomViewHolder(itemView: ItemTeamBinding) :
         RecyclerView.ViewHolder(itemView.root) {
-        val binding: ItemTeamBinding = itemView
+        var binding: ItemTeamBinding = itemView
     }
 
 

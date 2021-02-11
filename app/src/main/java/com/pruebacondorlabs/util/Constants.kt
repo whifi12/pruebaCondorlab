@@ -1,7 +1,8 @@
 package com.pruebacondorlabs.util
 
 object Constants {
-    val BASE_URL = "https://www.thesportsdb.com/api/v1/json/1/"
-    val SPORT = "Soccer"
-    val SPAIN = "Spain"
+    const val BASE_URL = "https://www.thesportsdb.com/api/v1/json/1/"
+    const val SPORT = "Soccer"
+    const val SPAIN = "Spain"
+    const val TEAMS = "teams"
 }

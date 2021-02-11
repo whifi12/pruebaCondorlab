@@ -11,6 +11,7 @@ import com.pruebacondorlabs.repositories.LeaguesRepository
 import com.pruebacondorlabs.util.Constants.SPORT
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.internal.util.HalfSerializer.onComplete
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
@@ -21,16 +22,20 @@ class MainViewModel @Inject constructor(
     private val leaguesBL: ILeaguesBL = leaguesRepository
     private val teams = MutableLiveData<List<Teams>>()
     private val disposables = CompositeDisposable();
+    private val progress = MutableLiveData<Boolean>()
 
     fun getTeams(country: String) {
+        progress.value = true
         val disposable = leaguesBL.getTeams(SPORT, country).subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ league: League? ->
                 loadData(league)
+                progress.value = false
             }, { error: Throwable? ->
                 if (error != null) {
                     error.message?.let { Log.e(error.localizedMessage, it) }
                 }
+                progress.value = false
             })
         disposables.add(disposable)
     }
@@ -40,6 +45,10 @@ class MainViewModel @Inject constructor(
             teams.value = league.teams
         }
 
+    }
+
+    fun progress(): LiveData<Boolean> {
+        return progress
     }
 
     fun teams() : LiveData<List<Teams>> {

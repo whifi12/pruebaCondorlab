@@ -2,7 +2,16 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.pruebacondorlabs.viewModel.ItemTeamViewModel" />
+
+    </data>
+
     <androidx.cardview.widget.CardView
+        android:id="@+id/item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -18,25 +27,53 @@
                 android:id="@+id/logo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:imageUrl="@{viewModel.imageUrl}"
+                app:error="@{@drawable/ic_error}"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/name"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
 
-            <TextView
-                android:id="@+id/name"
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@id/logo"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                android:layout_marginStart="20dp"
+                android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/titleName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/titleName"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                app:mutableText="@{viewModel.name}" />
+
+            <TextView
+                android:id="@+id/titleStadium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/titleStadium"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                />
 
             <TextView
                 android:id="@+id/stadium"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/logo"
-                app:layout_constraintTop_toBottomOf="@id/name" />
+                android:textSize="15sp"
+                app:mutableText="@{viewModel.stadium}" />
+
+            </LinearLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

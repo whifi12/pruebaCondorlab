@@ -1,5 +1,6 @@
 package com.pruebacondorlabs.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
@@ -11,9 +12,10 @@ import com.pruebacondorlabs.base.BaseActivity
 import com.pruebacondorlabs.databinding.ActivityMainBinding
 import com.pruebacondorlabs.models.Teams
 import com.pruebacondorlabs.util.Constants.SPAIN
+import com.pruebacondorlabs.util.Constants.TEAMS
 import com.pruebacondorlabs.viewModel.MainViewModel
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), TeamsRecyclerAdapter.OnUsersListener {
 
     lateinit var binding: ActivityMainBinding
     lateinit var viewModel: MainViewModel
@@ -26,13 +28,14 @@ class MainActivity : BaseActivity() {
         loadView()
         loadRecycler()
         listenerObservable()
+        createProgressDialog()
         loadService()
     }
 
     private fun loadRecycler() {
         val linearLayoutManager = LinearLayoutManager(this)
         binding.recyclerViewTeams.layoutManager = linearLayoutManager
-        adapter = TeamsRecyclerAdapter(this, teams)
+        adapter = TeamsRecyclerAdapter(teams,this)
         binding.recyclerViewTeams.adapter = adapter
     }
 
@@ -40,7 +43,7 @@ class MainActivity : BaseActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         configureDagger()
         viewModel = ViewModelProviders.of(this,viewModelFactory).get(MainViewModel::class.java)
-        binding.alertasviewmodel = viewModel
+        binding.viewModel = viewModel
         supportActionBar?.setTitle(R.string.main)
     }
 
@@ -49,10 +52,27 @@ class MainActivity : BaseActivity() {
         viewModel.teams().observe(this) { teams ->
             adapter.setItems(teams)
         }
+        viewModel.progress().observe(this){ progress ->
+            if(progress){
+                showProgressDIalog(R.string.wait)
+            }else{
+                dismissProgressDialog()
+            }
+        }
     }
 
     private fun loadService(){
         viewModel.getTeams(SPAIN)
+    }
+
+    override fun onItemClick(teams: Teams) {
+        goToDetailTeam(teams)
+    }
+
+    private fun goToDetailTeam(teams: Teams){
+        val intent = Intent(this,DetailActivity::class.java)
+        intent.putExtra(TEAMS, teams)
+        startActivity(intent)
     }
 
 }
