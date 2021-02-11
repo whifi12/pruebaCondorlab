@@ -1,6 +1,7 @@
 package com.pruebacondorlabs.rest
 
 
+import com.pruebacondorlabs.models.Events
 import com.pruebacondorlabs.models.League
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -11,7 +12,7 @@ interface LeagueServices {
     @GET("search_all_teams.php")
     fun getTeams(@Query("s") soccer: String, @Query("c") country: String): Observable<League>
 
-    @GET("lookupteam.php")
-    fun getDetailTeam(@Query("id") id: String): Observable<League>
+    @GET("eventslast.php")
+    fun getLastEvents(@Query("id") id: String): Observable<Events>
 
 }

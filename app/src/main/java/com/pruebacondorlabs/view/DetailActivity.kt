@@ -5,9 +5,14 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.observe
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.pruebacondorlabs.R
+import com.pruebacondorlabs.adapter.EventRecyclerAdapter
+import com.pruebacondorlabs.adapter.TeamsRecyclerAdapter
 import com.pruebacondorlabs.base.BaseActivity
 import com.pruebacondorlabs.databinding.ActivityDetailBinding
+import com.pruebacondorlabs.models.Match
 import com.pruebacondorlabs.models.Teams
 import com.pruebacondorlabs.util.Constants.TEAMS
 import com.pruebacondorlabs.viewModel.DetailViewModel
@@ -17,11 +22,36 @@ class DetailActivity : BaseActivity() {
 
     lateinit var binding : ActivityDetailBinding
     lateinit var viewModel: DetailViewModel
+    lateinit var adapter : EventRecyclerAdapter
+    private var events = ArrayList<Match>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadView()
+        listenerObservable()
+        loadRecycler()
         loadData()
+
+    }
+
+    private fun loadRecycler() {
+        val linearLayoutManager = LinearLayoutManager(this)
+        binding.recyclerViewMatchs.layoutManager = linearLayoutManager
+        adapter = EventRecyclerAdapter(events)
+        binding.recyclerViewMatchs.adapter = adapter
+    }
+
+    private fun listenerObservable(){
+        viewModel.getEvents().observe(this) { events ->
+            adapter.setItems(events)
+        }
+        viewModel.progress().observe(this){ progress ->
+            if(progress){
+                showProgressDIalog(R.string.wait)
+            }else{
+                dismissProgressDialog()
+            }
+        }
     }
 
     private fun loadData() {

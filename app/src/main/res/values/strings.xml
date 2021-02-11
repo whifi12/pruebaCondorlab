@@ -9,4 +9,5 @@
     <string name="titleContact">Contacts</string>
     <string name="main">Leagues</string>
     <string name="wait">One moment, please</string>
+    <string name="lastEvents">Last 5 events</string>
 </resources>

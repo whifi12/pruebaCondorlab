@@ -2,9 +2,8 @@ package com.pruebacondorlabs.models
 
 import com.google.gson.annotations.SerializedName
 
- class League {
+class Events {
 
-    @SerializedName("teams")
-    var teams = ArrayList<Teams>()
-
+    @SerializedName("results")
+    var events = ArrayList<Match>()
 }

@@ -6,16 +6,16 @@ import java.io.Serializable
 class Teams : Serializable {
 
     @SerializedName("idTeam")
-    val idTeam : String = ""
+    var idTeam : String = ""
 
     @SerializedName("strTeam")
-    val name : String = ""
+    var name : String = ""
 
     @SerializedName("strStadiumLocation")
     val stadium : String = ""
 
     @SerializedName("strTeamBadge")
-    val badge : String = ""
+    var badge : String = ""
 
     @SerializedName("strTeamJersey")
     val jersey : String = ""
@@ -33,9 +33,9 @@ class Teams : Serializable {
     val instagram : String = ""
 
     @SerializedName("strDescriptionEN")
-    val description : String = ""
+    var description : String = ""
 
     @SerializedName("intFormedYear")
-    val year : String = ""
+    var year : String = ""
 
 }

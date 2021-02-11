@@ -15,7 +15,7 @@ import io.reactivex.internal.util.HalfSerializer.onComplete
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(
+open class MainViewModel @Inject constructor(
     leaguesRepository: LeaguesRepository
 ) : ViewModel() {
 
@@ -40,7 +40,7 @@ class MainViewModel @Inject constructor(
         disposables.add(disposable)
     }
 
-    fun loadData(league: League?) {
+    open fun loadData(league: League?) {
         if (league != null) {
             teams.value = league.teams
         }

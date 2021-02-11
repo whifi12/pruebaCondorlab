@@ -2,6 +2,7 @@ package com.pruebacondorlabs.util;
 
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.databinding.BindingAdapter;
@@ -44,6 +45,13 @@ public class BindingAdapters {
             if(images != null) {
                 imageView.setVisibility(images);
             }
+        });
+    }
+
+    @BindingAdapter("mutableLinearLayoutVisibility")
+    public static void LinearLayoutVisibility(LinearLayout linearLayout, MutableLiveData<Integer> date){
+        date.observeForever(s -> {
+            if(date != null) linearLayout.setVisibility(date.getValue());
         });
     }
 
