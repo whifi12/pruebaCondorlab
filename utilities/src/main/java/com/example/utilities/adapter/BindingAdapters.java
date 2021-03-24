@@ -1,4 +1,4 @@
-package com.pruebacondorlabs.util;
+package com.example.utilities.adapter;
 
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;

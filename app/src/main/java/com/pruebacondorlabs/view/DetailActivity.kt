@@ -9,12 +9,11 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pruebacondorlabs.R
 import com.pruebacondorlabs.adapter.EventRecyclerAdapter
-import com.pruebacondorlabs.adapter.TeamsRecyclerAdapter
-import com.pruebacondorlabs.base.BaseActivity
+import com.example.utilities.base.BaseActivity
 import com.pruebacondorlabs.databinding.ActivityDetailBinding
 import com.pruebacondorlabs.models.Match
 import com.pruebacondorlabs.models.Teams
-import com.pruebacondorlabs.util.Constants.TEAMS
+import com.example.utilities.util.Constants.TEAMS
 import com.pruebacondorlabs.viewModel.DetailViewModel
 
 

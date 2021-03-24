@@ -3,7 +3,7 @@ package com.pruebacondorlabs.di.module
 import android.app.Application
 import com.pruebacondorlabs.App
 import com.pruebacondorlabs.rest.LeagueServices
-import com.pruebacondorlabs.util.Constants.BASE_URL
+import com.example.utilities.util.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
 import io.reactivex.schedulers.Schedulers

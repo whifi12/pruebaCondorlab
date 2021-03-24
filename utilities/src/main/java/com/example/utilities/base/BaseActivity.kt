@@ -1,8 +1,7 @@
-package com.pruebacondorlabs.base
+package com.example.utilities.base
 
 import android.app.ProgressDialog
 import android.util.Log
-import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider

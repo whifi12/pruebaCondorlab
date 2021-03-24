@@ -4,8 +4,7 @@ import android.provider.ContactsContract.CommonDataKinds.StructuredPostal.COUNTR
 import com.pruebacondorlabs.models.League
 import com.pruebacondorlabs.models.Teams
 import com.pruebacondorlabs.repositories.LeaguesRepository
-import com.pruebacondorlabs.rest.LeagueServices
-import com.pruebacondorlabs.util.Constants.SPORT
+import com.example.utilities.util.Constants.SPORT
 import com.pruebacondorlabs.viewModel.MainViewModel
 import io.reactivex.Observable
 import junit.framework.Assert.*

@@ -1,20 +1,17 @@
 package com.pruebacondorlabs
 
-import android.provider.ContactsContract
 import com.pruebacondorlabs.models.Events
 import com.pruebacondorlabs.models.Match
 import com.pruebacondorlabs.models.Teams
 import com.pruebacondorlabs.repositories.LeaguesRepository
-import com.pruebacondorlabs.util.Constants
+import com.example.utilities.util.Constants
 import com.pruebacondorlabs.viewModel.DetailViewModel
 import io.reactivex.Observable
 import junit.framework.Assert.*
-import org.junit.Assert.assertNotEquals
 import org.junit.Before
 import org.junit.Test
 import org.mockito.InjectMocks
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.Mockito.*
 
 class DetailViewModelTest : BaseTest() {

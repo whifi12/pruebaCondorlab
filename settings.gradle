@@ -1,2 +1,4 @@
+include ':team'
+include ':utilities'
 include ':app'
 rootProject.name = "pruebaCondorlabs"

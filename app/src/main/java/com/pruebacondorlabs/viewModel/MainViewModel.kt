@@ -8,10 +8,9 @@ import com.pruebacondorlabs.bussinessLogic.ILeaguesBL
 import com.pruebacondorlabs.models.League
 import com.pruebacondorlabs.models.Teams
 import com.pruebacondorlabs.repositories.LeaguesRepository
-import com.pruebacondorlabs.util.Constants.SPORT
+import com.example.utilities.util.Constants.SPORT
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.internal.util.HalfSerializer.onComplete
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
