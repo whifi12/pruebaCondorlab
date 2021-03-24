@@ -5,21 +5,20 @@ import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.pruebacondorlabs.bussinessLogic.ILeaguesBL
-import com.pruebacondorlabs.models.Events
-import com.pruebacondorlabs.models.Match
-import com.pruebacondorlabs.models.Teams
-import com.pruebacondorlabs.repositories.LeaguesRepository
+import com.example.domain.repository.ILeaguesRepositoy
+import com.example.domain.model.Events
+import com.example.domain.model.Match
+import com.example.domain.model.Teams
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 open class DetailViewModel @Inject constructor(
-    leaguesRepository: LeaguesRepository
+    leaguesRepository: com.example.domain.repository.LeaguesRepository
 ) : ViewModel() {
 
-    private val leaguesBL: ILeaguesBL = leaguesRepository
+    private val leaguesRepositoy: ILeaguesRepositoy = leaguesRepository
     private val events = MutableLiveData<List<Match>>()
     private val disposables = CompositeDisposable();
     private val progress = MutableLiveData<Boolean>()
@@ -54,7 +53,7 @@ open class DetailViewModel @Inject constructor(
 
     open fun getLastEvents(id: String) {
         progress.value = true
-        val disposable = leaguesBL.getEvents(id).subscribeOn(Schedulers.io())
+        val disposable = leaguesRepositoy.getEvents(id).subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ events: Events? ->
                 loadDataEvents(events)

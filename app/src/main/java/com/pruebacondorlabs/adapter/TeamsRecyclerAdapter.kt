@@ -6,10 +6,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.pruebacondorlabs.R
 import com.pruebacondorlabs.databinding.ItemTeamBinding
-import com.pruebacondorlabs.models.Teams
+import com.example.domain.model.Teams
 import com.pruebacondorlabs.viewModel.ItemTeamViewModel
 
-class TeamsRecyclerAdapter(private var teams: List<Teams>,private val onUsersListener: OnUsersListener) : RecyclerView.Adapter<TeamsRecyclerAdapter.CustomViewHolder>() {
+class TeamsRecyclerAdapter(private var teams: List<Teams>, private val onUsersListener: OnUsersListener) : RecyclerView.Adapter<TeamsRecyclerAdapter.CustomViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {

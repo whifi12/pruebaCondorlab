@@ -1,7 +1,7 @@
 package com.pruebacondorlabs.viewModel
 
 import androidx.lifecycle.MutableLiveData
-import com.pruebacondorlabs.models.Teams
+import com.example.domain.model.Teams
 
 class ItemTeamViewModel() {
 

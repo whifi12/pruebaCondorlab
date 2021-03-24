@@ -1,10 +1,8 @@
 package com.pruebacondorlabs
 
-import com.pruebacondorlabs.models.Events
-import com.pruebacondorlabs.models.Match
-import com.pruebacondorlabs.models.Teams
-import com.pruebacondorlabs.repositories.LeaguesRepository
-import com.example.utilities.util.Constants
+import com.example.domain.model.Events
+import com.example.domain.model.Match
+import com.example.domain.model.Teams
 import com.pruebacondorlabs.viewModel.DetailViewModel
 import io.reactivex.Observable
 import junit.framework.Assert.*
@@ -19,7 +17,7 @@ class DetailViewModelTest : BaseTest() {
     lateinit var detailViewModel: DetailViewModel
 
     @Mock
-    lateinit var leaguesRepository: LeaguesRepository
+    lateinit var leaguesRepository: com.example.domain.repository.LeaguesRepository
 
 
     private lateinit var event : ArrayList<Match>
@@ -42,7 +40,7 @@ class DetailViewModelTest : BaseTest() {
     override fun setUp() {
         super.setUp()
         event = ArrayList()
-        leaguesRepository = mock(LeaguesRepository::class.java)
+        leaguesRepository = mock(com.example.domain.repository.LeaguesRepository::class.java)
         detailViewModel = spy(DetailViewModel(leaguesRepository))
     }
 

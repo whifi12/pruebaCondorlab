@@ -1,15 +1,15 @@
-package com.pruebacondorlabs.repositories
+package com.example.domain.repository
 
 
-import com.pruebacondorlabs.bussinessLogic.ILeaguesBL
-import com.pruebacondorlabs.models.Events
-import com.pruebacondorlabs.models.League
-import com.pruebacondorlabs.rest.LeagueServices
+import com.example.domain.model.Events
+import com.example.domain.model.League
+import com.example.domain.service.LeagueServices
 import io.reactivex.Observable
 import javax.inject.Inject
 
 open class LeaguesRepository @Inject constructor(
-    private val leagueServices: LeagueServices): ILeaguesBL {
+    private val leagueServices: LeagueServices
+): ILeaguesRepositoy {
 
 
     override fun getTeams(sport : String, country : String) : Observable<League> {

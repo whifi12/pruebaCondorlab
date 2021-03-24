@@ -1,9 +1,8 @@
 package com.pruebacondorlabs
 
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal.COUNTRY
-import com.pruebacondorlabs.models.League
-import com.pruebacondorlabs.models.Teams
-import com.pruebacondorlabs.repositories.LeaguesRepository
+import com.example.domain.model.League
+import com.example.domain.model.Teams
 import com.example.utilities.util.Constants.SPORT
 import com.pruebacondorlabs.viewModel.MainViewModel
 import io.reactivex.Observable
@@ -19,7 +18,7 @@ class MainViewModelTest : BaseTest() {
     lateinit var mainViewModel: MainViewModel
 
     @Mock
-    lateinit var leaguesRepository: LeaguesRepository
+    lateinit var leaguesRepository: com.example.domain.repository.LeaguesRepository
 
 
     private lateinit var teams : ArrayList<Teams>

@@ -1,8 +1,8 @@
-package com.pruebacondorlabs.rest
+package com.example.domain.service
 
 
-import com.pruebacondorlabs.models.Events
-import com.pruebacondorlabs.models.League
+import com.example.domain.model.Events
+import com.example.domain.model.League
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query

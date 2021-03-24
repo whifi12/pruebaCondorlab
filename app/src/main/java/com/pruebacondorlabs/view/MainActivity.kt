@@ -10,7 +10,7 @@ import com.pruebacondorlabs.R
 import com.pruebacondorlabs.adapter.TeamsRecyclerAdapter
 import com.example.utilities.base.BaseActivity
 import com.pruebacondorlabs.databinding.ActivityMainBinding
-import com.pruebacondorlabs.models.Teams
+import com.example.domain.model.Teams
 import com.example.utilities.util.Constants.SPAIN
 import com.example.utilities.util.Constants.TEAMS
 import com.pruebacondorlabs.viewModel.MainViewModel
@@ -62,7 +62,7 @@ class MainActivity : BaseActivity(), TeamsRecyclerAdapter.OnUsersListener {
     }
 
     private fun loadService(){
-        viewModel.getTeams(SPAIN)
+        viewModel.loadTeams(SPAIN)
     }
 
     override fun onItemClick(teams: Teams) {

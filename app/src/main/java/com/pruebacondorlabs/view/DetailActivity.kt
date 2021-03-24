@@ -11,8 +11,8 @@ import com.pruebacondorlabs.R
 import com.pruebacondorlabs.adapter.EventRecyclerAdapter
 import com.example.utilities.base.BaseActivity
 import com.pruebacondorlabs.databinding.ActivityDetailBinding
-import com.pruebacondorlabs.models.Match
-import com.pruebacondorlabs.models.Teams
+import com.example.domain.model.Match
+import com.example.domain.model.Teams
 import com.example.utilities.util.Constants.TEAMS
 import com.pruebacondorlabs.viewModel.DetailViewModel
 
@@ -57,6 +57,10 @@ class DetailActivity : BaseActivity() {
         val teams = intent.getSerializableExtra(TEAMS) as? Teams
         supportActionBar?.title = teams?.name ?: ""
         viewModel.loadData(teams)
+        teams?.let { listener(it) }
+    }
+
+    private fun listener(teams:Teams){
         binding.facebook.setOnClickListener {
             goToNavigator(teams?.facebook ?: "")
         }

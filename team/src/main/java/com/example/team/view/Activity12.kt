@@ -5,4 +5,6 @@ import com.example.utilities.base.BaseActivityPresenter
 
 
 class Activity12 : BaseActivityPresenter<Presenter12>() {
+
+
 }
