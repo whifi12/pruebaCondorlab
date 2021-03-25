@@ -1,8 +1,8 @@
 package com.pruebacondorlabs
 
 import android.provider.ContactsContract.CommonDataKinds.StructuredPostal.COUNTRY
-import com.example.domain.model.League
-import com.example.domain.model.Teams
+import com.example.domain.model.response.League
+import com.example.domain.model.response.Teams
 import com.example.utilities.util.Constants.SPORT
 import com.pruebacondorlabs.viewModel.MainViewModel
 import io.reactivex.Observable

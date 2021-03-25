@@ -4,20 +4,20 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.domain.model.League
-import com.example.domain.model.Teams
-import com.example.domain.usecase.IGetTeamUseCase
+import com.example.domain.model.request.TeamRequest
+import com.example.domain.model.response.League
+import com.example.domain.model.response.Teams
+import com.example.domain.usecase.GetTeamsUseCase
 import com.example.utilities.util.Constants.SPORT
-import io.reactivex.disposables.CompositeDisposable
+import com.example.utilities.util.EmptyObserver
 import javax.inject.Inject
 
 open class MainViewModel @Inject constructor(
-    getTeamsUseCase: IGetTeamUseCase
+    getTeamsUseCase: GetTeamsUseCase
 ) : ViewModel() {
 
     private val teamUseCase = getTeamsUseCase
     private val teams = MutableLiveData<List<Teams>>()
-    private val disposables = CompositeDisposable();
     private val progress = MutableLiveData<Boolean>()
 
     fun loadTeams(country: String){
@@ -26,27 +26,35 @@ open class MainViewModel @Inject constructor(
     }
 
     fun getTeams(country: String) {
-        val disposable = teamUseCase.getTeams(SPORT, country)
-            .subscribe({ league: League? ->
-                loadData(league)
-            }, { error: Throwable? ->
-                errorTeams(error)
-            })
-        disposables.add(disposable)
+        val teamRequest = TeamRequest(SPORT,country)
+        teamUseCase.execute(observer = TeamsEventObserver(), params = teamRequest)
+    }
+
+    open inner class TeamsEventObserver :  EmptyObserver<League>() {
+        override fun onNext(result: League) {
+           loadData(league = result)
+        }
+
+        override fun onError(error: Throwable) {
+           errorTeams(error)
+        }
+
+        override fun onComplete() {
+            progress.value = false
+        }
     }
 
     open fun errorTeams(error: Throwable?){
         if (error != null) {
             error.message?.let { Log.e(error.localizedMessage, it) }
         }
-        progress.value = false
+
     }
 
     open fun loadData(league: League?) {
         if (league != null) {
             teams.value = league.teams
         }
-        progress.value = false
     }
 
     fun progress(): LiveData<Boolean> {

@@ -1,8 +1,8 @@
 package com.example.domain.service
 
 
-import com.example.domain.model.Events
-import com.example.domain.model.League
+import com.example.domain.model.response.Events
+import com.example.domain.model.response.League
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query

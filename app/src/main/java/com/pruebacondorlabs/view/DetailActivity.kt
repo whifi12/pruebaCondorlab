@@ -11,8 +11,8 @@ import com.pruebacondorlabs.R
 import com.pruebacondorlabs.adapter.EventRecyclerAdapter
 import com.example.utilities.base.BaseActivity
 import com.pruebacondorlabs.databinding.ActivityDetailBinding
-import com.example.domain.model.Match
-import com.example.domain.model.Teams
+import com.example.domain.model.response.Match
+import com.example.domain.model.response.Teams
 import com.example.utilities.util.Constants.TEAMS
 import com.pruebacondorlabs.viewModel.DetailViewModel
 
@@ -29,8 +29,8 @@ class DetailActivity : BaseActivity() {
         loadView()
         listenerObservable()
         loadRecycler()
+        createProgressDialog()
         loadData()
-
     }
 
     private fun loadRecycler() {
@@ -60,7 +60,7 @@ class DetailActivity : BaseActivity() {
         teams?.let { listener(it) }
     }
 
-    private fun listener(teams:Teams){
+    private fun listener(teams: Teams){
         binding.facebook.setOnClickListener {
             goToNavigator(teams?.facebook ?: "")
         }

@@ -1,4 +1,4 @@
-package com.example.domain.model
+package com.example.domain.model.response
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable

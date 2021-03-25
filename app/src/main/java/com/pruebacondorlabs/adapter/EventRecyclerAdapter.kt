@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.pruebacondorlabs.R
 import com.pruebacondorlabs.databinding.ItemEventsBinding
-import com.example.domain.model.Match
+import com.example.domain.model.response.Match
 
 class EventRecyclerAdapter (private var events: List<Match>) :  RecyclerView.Adapter<EventRecyclerAdapter.CustomViewHolder>(){
 

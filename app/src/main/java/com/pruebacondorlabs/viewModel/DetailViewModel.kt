@@ -6,19 +6,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.domain.repository.ILeaguesRepositoy
-import com.example.domain.model.Events
-import com.example.domain.model.Match
-import com.example.domain.model.Teams
+import com.example.domain.model.response.Events
+import com.example.domain.model.response.League
+import com.example.domain.model.response.Match
+import com.example.domain.model.response.Teams
+import com.example.domain.usecase.GetEventsUseCase
+import com.example.utilities.util.EmptyObserver
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 open class DetailViewModel @Inject constructor(
-    leaguesRepository: com.example.domain.repository.LeaguesRepository
+    private val getEventsUseCase: GetEventsUseCase
 ) : ViewModel() {
 
-    private val leaguesRepositoy: ILeaguesRepositoy = leaguesRepository
     private val events = MutableLiveData<List<Match>>()
     private val disposables = CompositeDisposable();
     private val progress = MutableLiveData<Boolean>()
@@ -53,19 +55,27 @@ open class DetailViewModel @Inject constructor(
 
     open fun getLastEvents(id: String) {
         progress.value = true
-        val disposable = leaguesRepositoy.getEvents(id).subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ events: Events? ->
-                loadDataEvents(events)
-                progress.value = false
-            }, { error: Throwable? ->
-                if (error != null) {
-                    error.message?.let { Log.e(error.localizedMessage, it) }
-                }
-                progress.value = false
-            })
-        disposables.add(disposable)
+        getEventsUseCase.execute(observer = TeamsEventObserver(),params = id)
     }
+
+    open inner class TeamsEventObserver :  EmptyObserver<Events>() {
+        override fun onNext(result: Events) {
+            loadDataEvents(events = result)
+        }
+
+        override fun onError(error: Throwable) {
+            errorEvents(error)
+        }
+
+        override fun onComplete() {
+            progress.value = false
+        }
+    }
+
+    open fun errorEvents(error: Throwable) {
+        error.message?.let { Log.e(error.localizedMessage, it) }
+    }
+
 
     open fun loadDataEvents(events: Events?) {
         if (events != null) {

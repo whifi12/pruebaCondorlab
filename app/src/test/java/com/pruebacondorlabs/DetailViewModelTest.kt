@@ -1,8 +1,8 @@
 package com.pruebacondorlabs
 
-import com.example.domain.model.Events
-import com.example.domain.model.Match
-import com.example.domain.model.Teams
+import com.example.domain.model.response.Events
+import com.example.domain.model.response.Match
+import com.example.domain.model.response.Teams
 import com.pruebacondorlabs.viewModel.DetailViewModel
 import io.reactivex.Observable
 import junit.framework.Assert.*
