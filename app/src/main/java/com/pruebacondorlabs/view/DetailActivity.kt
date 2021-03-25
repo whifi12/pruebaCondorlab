@@ -3,14 +3,13 @@ package com.pruebacondorlabs.view
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pruebacondorlabs.R
-import com.pruebacondorlabs.adapter.EventRecyclerAdapter
+import com.example.team.adapter.EventRecyclerAdapter
 import com.example.utilities.base.BaseActivity
-import com.pruebacondorlabs.databinding.ActivityDetailBinding
+//import com.pruebacondorlabs.databinding.ActivityDetailBinding
 import com.example.domain.model.response.Match
 import com.example.domain.model.response.Teams
 import com.example.utilities.util.Constants.TEAMS
@@ -19,7 +18,7 @@ import com.pruebacondorlabs.viewModel.DetailViewModel
 
 class DetailActivity : BaseActivity() {
 
-    lateinit var binding : ActivityDetailBinding
+    //lateinit var binding : ActivityDetailBinding
     lateinit var viewModel: DetailViewModel
     lateinit var adapter : EventRecyclerAdapter
     private var events = ArrayList<Match>()
@@ -35,9 +34,9 @@ class DetailActivity : BaseActivity() {
 
     private fun loadRecycler() {
         val linearLayoutManager = LinearLayoutManager(this)
-        binding.recyclerViewMatchs.layoutManager = linearLayoutManager
+        //binding.recyclerViewMatchs.layoutManager = linearLayoutManager
         adapter = EventRecyclerAdapter(events)
-        binding.recyclerViewMatchs.adapter = adapter
+        //binding.recyclerViewMatchs.adapter = adapter
     }
 
     private fun listenerObservable(){
@@ -61,7 +60,7 @@ class DetailActivity : BaseActivity() {
     }
 
     private fun listener(teams: Teams){
-        binding.facebook.setOnClickListener {
+        /*binding.facebook.setOnClickListener {
             goToNavigator(teams?.facebook ?: "")
         }
         binding.instagram.setOnClickListener {
@@ -72,7 +71,7 @@ class DetailActivity : BaseActivity() {
         }
         binding.twitter.setOnClickListener {
             goToNavigator(teams?.twitter ?: "")
-        }
+        }*/
     }
 
     private fun goToNavigator(url :String){
@@ -84,9 +83,9 @@ class DetailActivity : BaseActivity() {
 
 
     private fun loadView(){
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_detail)
+        //binding = DataBindingUtil.setContentView(this, R.layout.activity_detail)
         configureDagger()
         viewModel = ViewModelProviders.of(this,viewModelFactory).get(DetailViewModel::class.java)
-        binding.viewModel = viewModel
+        //binding.viewModel = viewModel
     }
 }

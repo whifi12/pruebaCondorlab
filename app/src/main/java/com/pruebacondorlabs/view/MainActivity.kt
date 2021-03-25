@@ -1,5 +1,6 @@
 package com.pruebacondorlabs.view
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -11,6 +12,7 @@ import com.pruebacondorlabs.adapter.TeamsRecyclerAdapter
 import com.example.utilities.base.BaseActivity
 import com.pruebacondorlabs.databinding.ActivityMainBinding
 import com.example.domain.model.response.Teams
+import com.example.team.view.DetailActivity
 import com.example.utilities.util.Constants.SPAIN
 import com.example.utilities.util.Constants.TEAMS
 import com.pruebacondorlabs.viewModel.MainViewModel

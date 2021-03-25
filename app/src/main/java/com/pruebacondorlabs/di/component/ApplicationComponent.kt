@@ -5,6 +5,8 @@ import com.pruebacondorlabs.di.module.ActivityModule
 import com.pruebacondorlabs.di.module.AppModule
 import com.example.domain.di.RepositoryModule
 import com.example.domain.di.UseCaseModule
+import com.example.team.di.PresenterModel
+import com.example.team.di.TeamActivityModule
 import com.pruebacondorlabs.di.module.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
@@ -15,7 +17,7 @@ import javax.inject.Singleton
 @Component(modules = [AndroidInjectionModule::class,
     ActivityModule::class,
     AppModule::class,
-    RepositoryModule::class, UseCaseModule::class,ViewModelModule::class])
+    RepositoryModule::class, UseCaseModule::class,ViewModelModule::class, PresenterModel::class, TeamActivityModule::class])
 interface ApplicationComponent {
 
     @Component.Builder

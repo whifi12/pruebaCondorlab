@@ -1,12 +1,13 @@
-package com.pruebacondorlabs.adapter
+package com.example.team.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.pruebacondorlabs.R
-import com.pruebacondorlabs.databinding.ItemEventsBinding
+
 import com.example.domain.model.response.Match
+import com.example.team.R
+import com.example.team.databinding.ItemEventsBinding
 
 class EventRecyclerAdapter (private var events: List<Match>) :  RecyclerView.Adapter<EventRecyclerAdapter.CustomViewHolder>(){
 
@@ -17,7 +18,9 @@ class EventRecyclerAdapter (private var events: List<Match>) :  RecyclerView.Ada
     ): CustomViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val itemBinding: ItemEventsBinding = DataBindingUtil.inflate(layoutInflater, viewType, parent, false)
-        return CustomViewHolder(itemBinding)
+        return CustomViewHolder(
+            itemBinding
+        )
     }
 
     override fun getItemCount(): Int {

@@ -3,13 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="viewModel"
-            type="com.pruebacondorlabs.viewModel.DetailViewModel" />
-
-    </data>
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -55,8 +48,6 @@
                     android:id="@+id/logo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:imageUrl="@{viewModel.badge}"
-                    app:error="@{@drawable/ic_error}"
                     android:layout_gravity="center" />
 
                 <TextView
@@ -71,7 +62,6 @@
                     android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:mutableText="@{viewModel.name}"
                     android:textSize="15sp" />
 
                 <TextView
@@ -86,7 +76,6 @@
                     android:id="@+id/description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:mutableText="@{viewModel.description}"
                     android:textSize="15sp" />
 
                 <TextView
@@ -102,7 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
-                    app:mutableText="@{viewModel.year}"/>
+                    />
 
 
                 <LinearLayout
@@ -110,7 +99,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
-                    app:mutableLinearLayoutVisibility="@{viewModel.visibilityContact}"
                     android:orientation="vertical">
 
                 <TextView
@@ -126,32 +114,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#3F51B5"
-                    app:mutableText="@{viewModel.web}"
-                    app:mutableTextViewVisibility="@{viewModel.visibilityWeb}"
                     android:textSize="15sp" />
                 <TextView
                     android:id="@+id/facebook"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#3F51B5"
-                    app:mutableText="@{viewModel.facebook}"
-                    app:mutableTextViewVisibility="@{viewModel.visibilityFacebook}"
                     android:textSize="15sp" />
                 <TextView
                     android:id="@+id/twitter"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#3F51B5"
-                    app:mutableText="@{viewModel.twitter}"
-                    app:mutableTextViewVisibility="@{viewModel.visibilityTwitter}"
                     android:textSize="15sp" />
                 <TextView
                     android:id="@+id/instagram"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="#3F51B5"
-                    app:mutableText="@{viewModel.instagram}"
-                    app:mutableTextViewVisibility="@{viewModel.visibilityInstagram}"
                     android:textSize="15sp" />
 
                 </LinearLayout>
@@ -172,10 +152,7 @@
                     android:visibility="invisible"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:mutableVisibilityImage="@{viewModel.visibilityJersey}"
-                    app:imageUrl="@{viewModel.jersey}"
-                    app:error="@{@drawable/ic_error}"/>
+                    android:layout_height="wrap_content" />
 
 
             </LinearLayout>
