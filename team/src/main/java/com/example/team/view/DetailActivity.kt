@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.domain.model.response.Match
 import com.example.domain.model.response.Teams
@@ -15,6 +16,7 @@ import com.example.team.presenter.DetailPresenter
 import com.example.utilities.base.BaseActivity
 import com.example.utilities.util.Constants
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -51,7 +53,9 @@ class DetailActivity : BaseActivity(),IDetailActivity {
         val teams = intent.getSerializableExtra(Constants.TEAMS) as? Teams
         presenter.injectView(this)
         supportActionBar?.title = teams?.name ?: ""
-        presenter.loadData(teams)
+        lifecycleScope.launch {
+            presenter.loadData(teams)
+        }
         teams?.let { listener(it) }
     }
 

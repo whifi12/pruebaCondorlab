@@ -7,17 +7,18 @@ import dagger.Module
 import dagger.Provides
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
 
 @Module
 class UseCaseModule {
 
     @Provides
     fun providerGetTeamsUseCase(leaguesRepository: LeaguesRepository) : GetTeamsUseCase {
-        return GetTeamsUseCase(Schedulers.io(), AndroidSchedulers.mainThread(),leaguesRepository)
+        return GetTeamsUseCase(leaguesRepository,Dispatchers.IO)
     }
 
     @Provides
     fun providerGetEventsUseCase(leaguesRepository: LeaguesRepository): GetEventsUseCase{
-        return GetEventsUseCase(Schedulers.io(),AndroidSchedulers.mainThread(),leaguesRepository)
+        return GetEventsUseCase(leaguesRepository,Dispatchers.IO)
     }
 }

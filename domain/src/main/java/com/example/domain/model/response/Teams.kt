@@ -18,7 +18,7 @@ class Teams : Serializable {
     var badge : String = ""
 
     @SerializedName("strTeamJersey")
-    val jersey : String = ""
+    val jersey : String? = null
 
     @SerializedName("strWebsite")
     val website : String = ""

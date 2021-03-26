@@ -3,7 +3,6 @@ package com.pruebacondorlabs
 import com.example.domain.model.response.Events
 import com.example.domain.model.response.Match
 import com.example.domain.model.response.Teams
-import com.pruebacondorlabs.viewModel.DetailViewModel
 import io.reactivex.Observable
 import junit.framework.Assert.*
 import org.junit.Before
@@ -14,7 +13,7 @@ import org.mockito.Mockito.*
 
 class DetailViewModelTest : BaseTest() {
 
-    lateinit var detailViewModel: DetailViewModel
+    /*lateinit var detailViewModel: DetailViewModel
 
     @Mock
     lateinit var leaguesRepository: com.example.domain.repository.LeaguesRepository
@@ -93,7 +92,7 @@ class DetailViewModelTest : BaseTest() {
         team.badge = badge
         team.year = year
     }
-
+*/
 
 
 }

@@ -4,15 +4,23 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.domain.model.request.TeamRequest
 import com.example.domain.model.response.League
 import com.example.domain.model.response.Teams
+import com.example.domain.repository.LeaguesRepository
 import com.example.domain.usecase.GetTeamsUseCase
 import com.example.utilities.util.Constants.SPORT
 import com.example.utilities.util.EmptyObserver
+import com.example.utilities.util.Result
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.ResponseBody
+import retrofit2.Response
 import javax.inject.Inject
 
-open class MainViewModel @Inject constructor(
+class MainViewModel @Inject constructor(
     getTeamsUseCase: GetTeamsUseCase
 ) : ViewModel() {
 
@@ -26,32 +34,25 @@ open class MainViewModel @Inject constructor(
     }
 
     fun getTeams(country: String) {
-        val teamRequest = TeamRequest(SPORT,country)
-        teamUseCase.execute(observer = TeamsEventObserver(), params = teamRequest)
-    }
-
-    open inner class TeamsEventObserver :  EmptyObserver<League>() {
-        override fun onNext(result: League) {
-           loadData(league = result)
-        }
-
-        override fun onError(error: Throwable) {
-           errorTeams(error)
-        }
-
-        override fun onComplete() {
+        viewModelScope.launch {
+            val teamRequest = TeamRequest(SPORT,country)
+            val data = teamUseCase.execute(teamRequest)
+            responseTeams(data)
             progress.value = false
         }
+
     }
 
-    open fun errorTeams(error: Throwable?){
-        if (error != null) {
-            error.message?.let { Log.e(error.localizedMessage, it) }
+    fun responseTeams(result :Response<League>){
+        if(result.isSuccessful){
+            loadData(result.body())
+        }else{
+            Log.e(result.code().toString(),result.message())
         }
-
     }
 
-    open fun loadData(league: League?) {
+
+    fun loadData(league: League?) {
         if (league != null) {
             teams.value = league.teams
         }
