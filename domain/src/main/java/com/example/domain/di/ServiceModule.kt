@@ -20,20 +20,9 @@ class ServiceModule {
     @Provides
     fun provideGithubService(): Retrofit {
 
-        val okHttpClient =  OkHttpClient.Builder()
-            .readTimeout(30, TimeUnit.SECONDS)
-            .connectTimeout(30, TimeUnit.SECONDS)
-            .retryOnConnectionFailure(true);
-
-        val interceptor = HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        okHttpClient.addInterceptor(interceptor).build();
-
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
-            .client(okHttpClient.build())
             .build();
     }
 

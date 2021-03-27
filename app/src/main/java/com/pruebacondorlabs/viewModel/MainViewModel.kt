@@ -8,11 +8,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.domain.model.request.TeamRequest
 import com.example.domain.model.response.League
 import com.example.domain.model.response.Teams
-import com.example.domain.repository.LeaguesRepository
 import com.example.domain.usecase.GetTeamsUseCase
 import com.example.utilities.util.Constants.SPORT
-import com.example.utilities.util.EmptyObserver
-import com.example.utilities.util.Result
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -27,6 +24,7 @@ class MainViewModel @Inject constructor(
     private val teamUseCase = getTeamsUseCase
     private val teams = MutableLiveData<List<Teams>>()
     private val progress = MutableLiveData<Boolean>()
+    private val error = MutableLiveData<String>()
 
     fun loadTeams(country: String){
         progress.value = true
@@ -47,13 +45,13 @@ class MainViewModel @Inject constructor(
         if(result.isSuccessful){
             loadData(result.body())
         }else{
-            Log.e(result.code().toString(),result.message())
+             error.value =  result.message()
         }
     }
 
 
     fun loadData(league: League?) {
-        if (league != null) {
+        if (league?.teams != null) {
             teams.value = league.teams
         }
     }
@@ -64,6 +62,10 @@ class MainViewModel @Inject constructor(
 
     fun teams() : LiveData<List<Teams>> {
         return teams
+    }
+
+    fun error() : LiveData<String> {
+        return error
     }
 
 
