@@ -61,7 +61,7 @@ class MainViewModelTest : BaseTest() {
         val response: Response<League> = Response.success(league)
         coEvery { getTeamsUseCase.execute(any()) } returns response
         mainViewModel.getTeams(SPAIN)
-        assertFalse(mainViewModel.progress().value!!)
+        assertFalse(mainViewModel.progress.value!!)
         verify { mainViewModel.responseTeams(any()) }
     }
 
@@ -83,7 +83,7 @@ class MainViewModelTest : BaseTest() {
         val response : Response<League> = Response.error(
             400, errorResponse.toResponseBody("application/json".toMediaTypeOrNull()))
         mainViewModel.responseTeams(response)
-        assertNotNull(mainViewModel.error().value)
+        assertNotNull(mainViewModel.error.value)
         verify(exactly = 0) { mainViewModel.loadData(league) }
     }
 
@@ -91,13 +91,13 @@ class MainViewModelTest : BaseTest() {
     fun testLoadServiceIsSuccessful() {
         league.teams = teams
         mainViewModel.loadData(league)
-        assertEquals(mainViewModel.teams().value, teams)
+        assertEquals(mainViewModel.teams.value, teams)
     }
 
     @Test
     fun testLoadServiceIsNotSuccessful() {
         mainViewModel.loadData(null)
-        assertNull(mainViewModel.teams().value)
+        assertNull(mainViewModel.teams.value)
     }
 
 

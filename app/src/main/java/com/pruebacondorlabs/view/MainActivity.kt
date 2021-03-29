@@ -51,10 +51,10 @@ class MainActivity : BaseActivity(), TeamsRecyclerAdapter.OnUsersListener {
 
 
     private fun listenerObservable(){
-        viewModel.teams().observe(this) { teams ->
+        viewModel.teams.observe(this) { teams ->
             adapter.setItems(teams)
         }
-        viewModel.progress().observe(this){ progress ->
+        viewModel.progress.observe(this){ progress ->
             if(progress){
                 showProgressDIalog(R.string.wait)
             }else{
