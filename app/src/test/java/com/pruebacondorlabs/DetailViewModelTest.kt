@@ -1,16 +1,5 @@
 package com.pruebacondorlabs
 
-import com.example.domain.model.response.Events
-import com.example.domain.model.response.Match
-import com.example.domain.model.response.Teams
-import io.reactivex.Observable
-import junit.framework.Assert.*
-import org.junit.Before
-import org.junit.Test
-import org.mockito.InjectMocks
-import org.mockito.Mock
-import org.mockito.Mockito.*
-
 class DetailViewModelTest : BaseTest() {
 
     /*lateinit var detailViewModel: DetailViewModel

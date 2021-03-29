@@ -1,4 +1,4 @@
-package com.pruebacondorlabs
+package com.example.domain
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.github.testcoroutinesrule.TestCoroutineRule

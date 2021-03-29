@@ -5,13 +5,14 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.utilities.base.view_base.IBaseView
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
-open class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector {
+open class BaseActivity : IBaseView, AppCompatActivity(), HasSupportFragmentInjector {
 
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
@@ -31,7 +32,7 @@ open class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector {
         this.progressDialog!!.setCancelable(false)
     }
 
-    open fun showProgressDIalog(text: Int) {
+    override fun showProgressDIalog(text: Int) {
         runOnUiThread {
             try {
                 progressDialog!!.setMessage(resources.getString(text))
@@ -42,7 +43,7 @@ open class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector {
         }
     }
 
-    open fun dismissProgressDialog() {
+    override fun dismissProgressDialog() {
         this.progressDialog!!.dismiss()
     }
 

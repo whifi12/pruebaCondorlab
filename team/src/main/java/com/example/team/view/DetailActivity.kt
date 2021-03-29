@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,10 +21,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
-class DetailActivity : BaseActivity(),IDetailActivity {
+class DetailActivity : BaseActivity(), IDetailActivity {
 
-    lateinit var binding : ActivityDetailBinding
-    lateinit var adapter : EventRecyclerAdapter
+    lateinit var binding: ActivityDetailBinding
+    lateinit var adapter: EventRecyclerAdapter
+
     @Inject
     lateinit var presenter: DetailPresenter
 
@@ -32,6 +34,7 @@ class DetailActivity : BaseActivity(),IDetailActivity {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loadView()
+        createProgressDialog()
         configureDagger()
         loadRecycler()
         loadService()
@@ -44,7 +47,7 @@ class DetailActivity : BaseActivity(),IDetailActivity {
         binding.recyclerViewMatchs.adapter = adapter
     }
 
-    private fun loadView(){
+    private fun loadView() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail)
 
     }
@@ -59,7 +62,7 @@ class DetailActivity : BaseActivity(),IDetailActivity {
         teams?.let { listener(it) }
     }
 
-    private fun listener(teams: Teams){
+    private fun listener(teams: Teams) {
         binding.facebook.setOnClickListener {
             goToNavigator(teams?.facebook ?: "")
         }
@@ -74,7 +77,7 @@ class DetailActivity : BaseActivity(),IDetailActivity {
         }
     }
 
-    private fun goToNavigator(url :String){
+    private fun goToNavigator(url: String) {
         val defaultBrowser =
             Intent.makeMainSelectorActivity(Intent.ACTION_MAIN, Intent.CATEGORY_APP_BROWSER)
         defaultBrowser.data = Uri.parse(url)
@@ -85,12 +88,16 @@ class DetailActivity : BaseActivity(),IDetailActivity {
         adapter.setItems(events)
     }
 
-    override fun loadData(teams: Teams){
+    override fun loadData(teams: Teams) {
         validateData(teams)
         loadInfo(teams)
     }
 
-    open fun loadInfo(teams: Teams){
+    override fun loadError(message: String) {
+        Toast.makeText(applicationContext,message,Toast.LENGTH_LONG)
+    }
+
+    fun loadInfo(teams: Teams) {
         binding.name.text = teams.name
         binding.description.text = teams.description
         binding.year.text = teams.year
@@ -98,28 +105,28 @@ class DetailActivity : BaseActivity(),IDetailActivity {
     }
 
 
-    open fun validateData(teams: Teams){
-        if(teams.jersey != null){
-            binding.jersey.visibility=  View.VISIBLE
+    fun validateData(teams: Teams) {
+        if (teams.jersey != null) {
+            binding.jersey.visibility = View.VISIBLE
             binding.contact.visibility = View.VISIBLE
             Picasso.get().load(teams.jersey).into(binding.jersey)
         }
-        if(teams.facebook.isNotEmpty()){
+        if (teams.facebook.isNotEmpty()) {
             binding.facebook.visibility = View.VISIBLE
             binding.contact.visibility = View.VISIBLE
             binding.facebook.text = teams.facebook
         }
-        if(teams.instagram.isNotEmpty()){
-            binding.facebook .visibility = View.VISIBLE
+        if (teams.instagram.isNotEmpty()) {
+            binding.facebook.visibility = View.VISIBLE
             binding.contact.visibility = View.VISIBLE
             binding.instagram.text = teams.instagram
         }
-        if(teams.twitter.isNotEmpty()){
+        if (teams.twitter.isNotEmpty()) {
             binding.twitter.visibility = View.VISIBLE
             binding.contact.visibility = View.VISIBLE
             binding.twitter.text = teams.twitter
         }
-        if(teams.website.isNotEmpty()){
+        if (teams.website.isNotEmpty()) {
             binding.web.visibility = View.VISIBLE
             binding.contact.visibility = View.VISIBLE
             binding.web.text = teams.website

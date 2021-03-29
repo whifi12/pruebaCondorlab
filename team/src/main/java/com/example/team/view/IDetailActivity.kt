@@ -10,4 +10,6 @@ interface IDetailActivity : IBaseView {
 
      fun loadData(teams: Teams)
 
+     fun loadError(message: String)
+
 }

@@ -9,52 +9,51 @@ import com.example.domain.model.response.League
 import com.example.domain.model.response.Match
 import com.example.domain.model.response.Teams
 import com.example.domain.usecase.GetEventsUseCase
+import com.example.team.R
 import com.example.team.view.IDetailActivity
 import com.example.utilities.base.BasePresenter
 import com.example.utilities.util.EmptyObserver
 import retrofit2.Response
 import javax.inject.Inject
 
-class DetailPresenter  @Inject constructor(
+class DetailPresenter @Inject constructor(
     private val getEventsUseCase: GetEventsUseCase
 ) : BasePresenter<IDetailActivity>() {
 
-    lateinit var  view : IDetailActivity
-    private val progress = MutableLiveData<Boolean>()
+    lateinit var view: IDetailActivity
 
-    open fun injectView(view: IDetailActivity){
+    fun injectView(view: IDetailActivity) {
         this.view = view
     }
 
 
-    open suspend fun loadData(teams: Teams?){
+    suspend fun loadData(teams: Teams?) {
         if (teams != null) {
             view.loadData(teams)
             getLastEvents(teams.idTeam)
         }
     }
 
-    open suspend fun getLastEvents(id: String) {
-        progress.value = true
+    suspend fun getLastEvents(id: String) {
+        view.showProgressDIalog(R.string.wait)
         response(getEventsUseCase.execute(id))
     }
 
-    open fun response(result : Response<Events>){
-        if(result.isSuccessful){
+    fun response(result: Response<Events>) {
+        view.dismissProgressDialog()
+        if (result.isSuccessful) {
             loadDataEvents(result.body())
-        }else{
-            Log.e(result.code().toString(),result.message())
+        } else {
+            view.loadError(result.message())
         }
     }
 
 
-    open fun loadDataEvents(events: Events?) {
+    fun loadDataEvents(events: Events?) {
         if (events != null) {
-           view.loadEvents(events = events.events)
+            view.loadEvents(events = events.events)
         }
 
     }
-
-
 
 }
