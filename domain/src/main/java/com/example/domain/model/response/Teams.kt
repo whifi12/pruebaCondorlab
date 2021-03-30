@@ -12,25 +12,25 @@ class Teams : Serializable {
     var name : String = ""
 
     @SerializedName("strStadiumLocation")
-    val stadium : String = ""
+    var stadium : String = ""
 
     @SerializedName("strTeamBadge")
     var badge : String = ""
 
     @SerializedName("strTeamJersey")
-    val jersey : String? = null
+    var jersey : String? = null
 
     @SerializedName("strWebsite")
-    val website : String = ""
+    var website : String = ""
 
     @SerializedName("strFacebook")
-    val facebook : String = ""
+    var facebook : String = ""
 
     @SerializedName("strTwitter")
-    val twitter : String = ""
+    var twitter : String = ""
 
     @SerializedName("strInstagram")
-    val instagram : String = ""
+    var instagram : String = ""
 
     @SerializedName("strDescriptionEN")
     var description : String = ""

@@ -1,6 +1,6 @@
 package com.pruebacondorlabs.view
 
-import android.app.Activity
+
 import android.content.Intent
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -51,7 +51,7 @@ class MainActivity : BaseActivity(), TeamsRecyclerAdapter.OnUsersListener {
 
 
     private fun listenerObservable(){
-        viewModel.teams.observe(this) { teams ->
+        viewModel.teams.observe(this){ teams ->
             adapter.setItems(teams)
         }
         viewModel.progress.observe(this){ progress ->

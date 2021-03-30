@@ -5,4 +5,5 @@ object Constants {
     const val SPORT = "Soccer"
     const val SPAIN = "Spain"
     const val TEAMS = "teams"
+    const val  ITEM_BELOW_THE_FOLD = 0
 }
