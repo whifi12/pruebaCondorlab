@@ -37,7 +37,7 @@ def daggerVersion = '2.21'
 
 dependencies {
     api project(":utilities")
-
+    implementation platform('com.google.firebase:firebase-bom:26.8.0')
     //dagger
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
@@ -63,6 +63,9 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.6'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
+    //firebase
+    implementation 'com.google.firebase:firebase-config'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.2.0'

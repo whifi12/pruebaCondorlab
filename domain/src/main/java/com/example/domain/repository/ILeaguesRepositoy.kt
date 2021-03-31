@@ -14,4 +14,6 @@ interface ILeaguesRepositoy {
     suspend fun getTeams(params: TeamRequest) : Response<League>
 
     suspend fun getEvents(id : String) : Response<Events>
+
+    fun getConfig() : Boolean
 }

@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.domain.model.request.TeamRequest
 import com.example.domain.model.response.League
 import com.example.domain.model.response.Teams
+import com.example.domain.usecase.GetConfigUseCase
 import com.example.domain.usecase.GetTeamsUseCase
 import com.example.utilities.util.Constants.SPORT
 import kotlinx.coroutines.launch
@@ -14,16 +15,23 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
-    getTeamsUseCase: GetTeamsUseCase
+    private val getTeamsUseCase: GetTeamsUseCase,
+    private val getConfigUseCase: GetConfigUseCase
 ) : ViewModel() {
 
-    private val teamUseCase = getTeamsUseCase
     private val _teams = MutableLiveData<List<Teams>>()
     private val _progress = MutableLiveData<Boolean>()
     private val _error = MutableLiveData<String>()
+    private val _config = MutableLiveData<Boolean>()
     val progress : LiveData<Boolean> get() = _progress
     val teams: LiveData<List<Teams>> get() = _teams
     val error : LiveData<String> get() = _error
+    val config : LiveData<Boolean> get() = _config
+
+    fun loadConfig(){
+        val config = getConfigUseCase.execute(Any())
+        _config.value = config
+    }
 
     fun loadTeams(country: String){
         _progress.value = true
@@ -33,7 +41,7 @@ class MainViewModel @Inject constructor(
     fun getTeams(country: String) {
         viewModelScope.launch {
             val teamRequest = TeamRequest(SPORT,country)
-            val data = teamUseCase.execute(teamRequest)
+            val data = getTeamsUseCase.execute(teamRequest)
             responseTeams(data)
             _progress.value = false
         }

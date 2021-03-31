@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "911575618728",
+    "project_id": "pruebacondorlabs",
+    "storage_bucket": "pruebacondorlabs.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:911575618728:android:1a24ad41b77c5f0a4b1e9d",
+        "android_client_info": {
+          "package_name": "com.pruebacondorlabs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "911575618728-35kacgp7fevgrjjlc4igvd1tq1lq85kb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3A5n7qmyrBR4ETAjIdDMWpwDiolxTtD0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "911575618728-35kacgp7fevgrjjlc4igvd1tq1lq85kb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

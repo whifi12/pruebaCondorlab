@@ -1,5 +1,6 @@
 package com.example.domain.di
 
+import com.example.domain.firebase.FeatureFlagging
 import com.example.domain.service.LeagueServices
 import com.example.utilities.util.Constants
 import dagger.Module

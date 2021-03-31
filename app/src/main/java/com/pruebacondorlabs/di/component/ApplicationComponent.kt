@@ -1,5 +1,6 @@
 package com.pruebacondorlabs.di.component
 
+import com.example.domain.di.LibraryModule
 import com.pruebacondorlabs.App
 import com.pruebacondorlabs.di.module.ActivityModule
 import com.pruebacondorlabs.di.module.AppModule
@@ -17,7 +18,8 @@ import javax.inject.Singleton
 @Component(modules = [AndroidInjectionModule::class,
     ActivityModule::class,
     AppModule::class,
-    RepositoryModule::class, UseCaseModule::class,ViewModelModule::class, PresenterModel::class, TeamActivityModule::class])
+    RepositoryModule::class, UseCaseModule::class,ViewModelModule::class, PresenterModel::class,
+    TeamActivityModule::class, LibraryModule::class])
 interface ApplicationComponent {
 
     @Component.Builder

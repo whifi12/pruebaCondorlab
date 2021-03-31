@@ -5,6 +5,7 @@ package com.pruebacondorlabs
 import com.example.domain.model.request.TeamRequest
 import com.example.domain.model.response.League
 import com.example.domain.model.response.Teams
+import com.example.domain.usecase.GetConfigUseCase
 import com.example.domain.usecase.GetTeamsUseCase
 import com.example.utilities.util.Constants.SPAIN
 import com.example.utilities.util.Constants.SPORT
@@ -37,6 +38,9 @@ class MainViewModelTest : BaseTest() {
     @MockK
     lateinit var getTeamsUseCase: GetTeamsUseCase
 
+    @MockK
+    lateinit var getConfigUseCase: GetConfigUseCase
+
 
     private lateinit var teams: ArrayList<Teams>
 
@@ -51,7 +55,7 @@ class MainViewModelTest : BaseTest() {
     fun setUp() {
         MockKAnnotations.init(this, relaxUnitFun = true)
         teams = ArrayList()
-        mainViewModel = spyk(MainViewModel(getTeamsUseCase))
+        mainViewModel = spyk(MainViewModel(getTeamsUseCase,getConfigUseCase))
     }
 
     @Test

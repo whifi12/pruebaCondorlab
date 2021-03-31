@@ -1,6 +1,7 @@
 package com.example.domain.di
 
 import com.example.domain.repository.LeaguesRepository
+import com.example.domain.usecase.GetConfigUseCase
 import com.example.domain.usecase.GetEventsUseCase
 import com.example.domain.usecase.GetTeamsUseCase
 import dagger.Module
@@ -21,4 +22,10 @@ class UseCaseModule {
     fun providerGetEventsUseCase(leaguesRepository: LeaguesRepository): GetEventsUseCase{
         return GetEventsUseCase(leaguesRepository,Dispatchers.IO)
     }
+
+    @Provides
+    fun providerGetConfig(leaguesRepository: LeaguesRepository) : GetConfigUseCase {
+        return GetConfigUseCase(leaguesRepository)
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.example.domain.repository
 
 
+import com.example.domain.firebase.FeatureFlagging
 import com.example.domain.model.request.TeamRequest
 import com.example.domain.model.response.Events
 import com.example.domain.model.response.League
@@ -11,7 +12,8 @@ import retrofit2.Response
 import javax.inject.Inject
 
 open class LeaguesRepository @Inject constructor(
-    private val leagueServices: LeagueServices
+    private val leagueServices: LeagueServices,
+    private val featureFlagging: FeatureFlagging
 ): ILeaguesRepositoy {
 
 
@@ -22,5 +24,10 @@ open class LeaguesRepository @Inject constructor(
     override suspend fun getEvents(id: String): Response<Events> {
         return leagueServices.getLastEvents(id)
     }
+
+    override fun getConfig(): Boolean {
+        return featureFlagging.showInAppDetail
+    }
+
 
 }
