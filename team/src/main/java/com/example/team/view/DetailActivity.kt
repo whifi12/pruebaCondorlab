@@ -101,12 +101,11 @@ class DetailActivity : BaseActivity(), IDetailActivity {
         binding.name.text = teams.name
         binding.description.text = teams.description
         binding.year.text = teams.year
-        Picasso.get().load(teams.badge).into(binding.logo)
     }
 
 
     fun validateData(teams: Teams) {
-        if (teams.jersey != null) {
+        if (teams.jersey != null && teams.jersey!!.isNotEmpty()) {
             binding.jersey.visibility = View.VISIBLE
             binding.contact.visibility = View.VISIBLE
             Picasso.get().load(teams.jersey).into(binding.jersey)
@@ -130,6 +129,9 @@ class DetailActivity : BaseActivity(), IDetailActivity {
             binding.web.visibility = View.VISIBLE
             binding.contact.visibility = View.VISIBLE
             binding.web.text = teams.website
+        }
+        if (teams.badge!!.isNotEmpty()){
+            Picasso.get().load(teams.badge).into(binding.logo)
         }
     }
 }

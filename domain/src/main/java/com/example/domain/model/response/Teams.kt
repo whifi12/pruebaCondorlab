@@ -15,7 +15,7 @@ class Teams : Serializable {
     var stadium : String = ""
 
     @SerializedName("strTeamBadge")
-    var badge : String = ""
+    var badge : String? = null
 
     @SerializedName("strTeamJersey")
     var jersey : String? = null

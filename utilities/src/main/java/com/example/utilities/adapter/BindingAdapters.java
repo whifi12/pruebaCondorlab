@@ -15,7 +15,9 @@ public class BindingAdapters {
     @BindingAdapter({"imageUrl", "error"})
     public static void loadImage(ImageView view, final MutableLiveData<String> url, Drawable error) {
         url.observeForever(urls ->{
-            Picasso.get().load(urls).error(error).into(view);
+            if(!urls.isEmpty()){
+                Picasso.get().load(urls).error(error).into(view);
+            }
         });
     }
 

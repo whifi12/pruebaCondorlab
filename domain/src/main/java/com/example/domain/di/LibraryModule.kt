@@ -1,13 +1,14 @@
 package com.example.domain.di
 
 
+import com.example.domain.db.AppDatabase
 import com.example.domain.firebase.FeatureFlagging
 import com.example.domain.firebase.FirebaseFeatureFlagging
+import com.example.utilities.base.BaseActivity
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
 
 @Module
 class LibraryModule {
@@ -25,4 +26,7 @@ class LibraryModule {
     fun providerFirebaseFeatureFlagging(remoteConfig : FirebaseRemoteConfig): FeatureFlagging {
         return FirebaseFeatureFlagging(remoteConfig)
     }
+
+   @Provides
+   fun providerAppDatabase() = AppDatabase.getDatabase(BaseActivity.context)
 }

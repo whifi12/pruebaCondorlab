@@ -1,6 +1,8 @@
 package com.example.utilities.base
 
 import android.app.ProgressDialog
+import android.content.Context
+import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -24,6 +26,10 @@ open class BaseActivity : IBaseView, AppCompatActivity(), HasSupportFragmentInje
 
     fun configureDagger(){
         AndroidInjection.inject(this)
+    }
+
+    companion object {
+        lateinit var context : Context
     }
 
 
