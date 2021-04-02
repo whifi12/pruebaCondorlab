@@ -28,6 +28,7 @@ class DetailPresenter @Inject constructor(
 ) : BasePresenter<IDetailActivity>() {
 
     lateinit var view: IDetailActivity
+    private var idTeam : String = ""
 
     fun injectView(view: IDetailActivity) {
         this.view = view
@@ -43,33 +44,34 @@ class DetailPresenter @Inject constructor(
 
     suspend fun validateDataSource(id : String){
         val matches = getEventsDB.execute(id)
+        idTeam = id
         if (matches.events.isEmpty()){
-            getLastEvents(id)
+            getLastEvents()
         }else{
-            loadDataEvents(events = matches, id = id)
+            loadDataEvents(events = matches)
         }
     }
 
-    suspend fun getLastEvents(id: String) {
+    suspend fun getLastEvents() {
         if (validateInternet.isConnected()){
             view.showProgressDIalog(R.string.wait)
-            response(getEventsUseCase.execute(id),id)
+            response(getEventsUseCase.execute(idTeam))
         }
     }
 
-    fun response(result: Response<Events>,id : String) {
+    fun response(result: Response<Events>) {
         view.dismissProgressDialog()
         if (result.isSuccessful) {
-            loadDataEvents(result.body(),id)
+            loadDataEvents(result.body())
         } else {
             view.loadError(result.message() ?: "error")
         }
     }
 
 
-    fun loadDataEvents(events: Events?, id: String) {
+    fun loadDataEvents(events: Events?) {
         if (events != null) {
-            saveEventsUseCase.execute(EventRequest(id,events.events))
+            saveEventsUseCase.execute(EventRequest(idTeam,events.events))
             view.loadEvents(events = events.events)
         }
 
