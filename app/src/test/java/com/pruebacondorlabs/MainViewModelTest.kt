@@ -32,6 +32,7 @@ class MainViewModelTest : BaseTest() {
     lateinit var mainViewModel: MainViewModel
 
 
+
     @MockK
     lateinit var getTeamsUseCase: GetTeamsUseCase
 
