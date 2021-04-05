@@ -3,6 +3,11 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'au.com.dius.pact' version "3.4.1"
+    id 'jacoco'
+}
+
+jacoco{
+    toolVersion = '0.8.2'
 }
 
 android {
@@ -35,6 +40,41 @@ android {
 }
 
 def daggerVersion = '2.21'
+
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
+    def coverageSourceDirs = [
+            "src/main/java"
+    ]
+    def fileFilter = [
+            '**/R.class',
+            '**/R$*.class',
+            '**/*$ViewInjector*.*',
+            '**/*$ViewBinder*.*',
+            '**/BuildConfig.*',
+            '**/Manifest*.*',
+            '**/dominio*.*'
+    ]
+    def debugTree = fileTree(dir: "$project.buildDir/tmp/kotlin-classes/debug", excludes: fileFilter)
+    classDirectories.from(files([ debugTree ]))
+    additionalSourceDirs.from(files(coverageSourceDirs))
+    sourceDirectories.from(files(coverageSourceDirs))
+    executionData.from(fileTree(dir: "$buildDir", includes: [
+            "jacoco/testDebugUnitTest.exec",'outputs/code-coverage/connected/*coverage.ec'
+    ]))
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
+task moveReport(type: Copy) {
+    if (file("${buildDir}/jacoco").exists()) {
+        from("${buildDir}/jacoco/")
+        include 'testDebugUnitTest.exec'
+        destinationDir file("${rootProject.buildDir}/jacoco/")
+        rename 'testDebugUnitTest.exec', "${project.name}.exec"
+        ant.echo(message: "$name")
+    }
+}
 
 dependencies {
     api project(":utilities")
