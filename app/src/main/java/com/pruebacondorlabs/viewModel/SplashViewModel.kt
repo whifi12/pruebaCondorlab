@@ -18,7 +18,7 @@ class SplashViewModel : ViewModel() {
         }.start()
     }
 
-    fun  getTime(): MutableLiveData<Boolean>{
+    fun getTime(): MutableLiveData<Boolean>{
         return time
     }
 

@@ -30,7 +30,6 @@ class MainActivity : BaseActivity(), TeamsRecyclerAdapter.OnUsersListener {
     lateinit var adapter: TeamsRecyclerAdapter
     private val teams = ArrayList<Teams>()
     private var detail = false
-    private val remoteConfig = FirebaseRemoteConfig.getInstance()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

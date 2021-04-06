@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.pruebacondorlabs.di.scope.ViewModelKey
 import com.pruebacondorlabs.viewModel.MainViewModel
+import com.pruebacondorlabs.viewModel.SplashViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
