@@ -45,7 +45,7 @@ jobs:
         
         with: 
 
-         project-token: ${{ 2d923558909648029279b36011ffb56b }}
+         project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
  
          coverage-reports: build/reports/jacoco/jacocoTestReport/jacocoTestReport.xml
       
